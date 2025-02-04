@@ -1,0 +1,25 @@
+CREATE DATABASE EmployeeDB;
+
+USE EmployeeDB;
+
+CREATE TABLE Departments (
+    DeptID INT PRIMARY KEY AUTO_INCREMENT,
+    DeptName VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE Employees (
+    EmpID INT PRIMARY KEY AUTO_INCREMENT,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    DeptID INT,
+    HireDate DATE,
+    FOREIGN KEY (DeptID) REFERENCES Departments(DeptID) ON DELETE SET NULL
+);
+
+CREATE TABLE Salaries (
+    SalaryID INT PRIMARY KEY AUTO_INCREMENT,
+    EmpID INT,
+    Salary DECIMAL(10,2),
+    PayDate DATE,
+    FOREIGN KEY (EmpID) REFERENCES Employees(EmpID) ON DELETE CASCADE
+);
